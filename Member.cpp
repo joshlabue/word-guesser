@@ -21,10 +21,10 @@ unsigned int Member::getGeneCount() {
     return geneCount;
 }
 
-double Member::getFitness() {
+int Member::getFitness() {
     return fitness;
 }
 
-void Member::setFitness(double fitness) {
+void Member::setFitness(int fitness) {
     this->fitness = fitness;
 }

@@ -25,7 +25,7 @@ public:
     */
     const char* getMemberData(unsigned int index);
 
-    void setFitness(unsigned int index, double fitness);
+    void setFitness(unsigned int index, int fitness);
 
     /*
     Free all memory currently occupied child Member objects and their data.

@@ -14,16 +14,20 @@ int main() {
     Population p = Population(POPULATION_SIZE, GENE_COUNT);
 
     calculateFitness(p);
+    p.iterate();
+
+    std::cout << "--- iteration ---\n";
+
+    calculateFitness(p);
 
     p.cleanUp();
 
     return 0;
 }
 
-
 void calculateFitness(Population& p) {
     for(int i = 0; i < POPULATION_SIZE; i++) {
-        int score = 0;
+        int fitness = 0;
 
         const char* data = p.getMemberData(i);
         std::cout << "Member " << i << ": " ;
@@ -31,11 +35,13 @@ void calculateFitness(Population& p) {
         for(int j = 0; j < GENE_COUNT; j++) {
             std::cout << data[j];
             if(data[j] == TARGET[j]) {
-                score++;
+                fitness++;
             }
         }
 
-        std::cout << std::endl;
+        std::cout << " : " << fitness << std::endl;
+
+        p.setFitness(i, fitness);
     }
 
 

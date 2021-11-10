@@ -11,8 +11,9 @@ public:
     Initialize population object.
     size: number of members in a single generation
     geneCount: the number of genes in a single member of the population
+    mutationChance: the chance of a mutation for each gene (0.0 - 1.0)
     */
-    Population(unsigned int size, unsigned int geneCount);
+    Population(unsigned int size, unsigned int geneCount, double mutationChance);
 
     /*
     Make a new generation of members after supplying the fitness of each member.
@@ -25,7 +26,16 @@ public:
     */
     const char* getMemberData(unsigned int index);
 
-    void setFitness(unsigned int index, int fitness);
+    /*
+    Set the fitness of a member at a given index.
+    Fitness can be any positive integer.
+    */
+    void setFitness(unsigned int index, unsigned int fitness);
+
+    /*
+    Returns the number of the current generation that the population is on.
+    */
+    int getGeneration();
 
     /*
     Free all memory currently occupied child Member objects and their data.
@@ -34,6 +44,11 @@ public:
     void cleanUp();
 private:
     std::vector<Member*> members;
-    char* randomGene(unsigned int geneCount, char min, char max);
+    double mutationChance;
+    int generation;
+    char* randomDNA(unsigned int geneCount);
+    char randomGene(char min, char max);
+    char randomLetter();
+    Member* crossOver(Member* parent1, Member* parent2);
 };
 
